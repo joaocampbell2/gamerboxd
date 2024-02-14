@@ -1,1 +1,26 @@
-<p>games works!</p>
+<mat-card>
+  <mat-card-content>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Jogos disponíveis</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <table mat-table [dataSource]="games" >
+  <!-- Name Column -->
+  <ng-container matColumnDef="nome">
+    <th mat-header-cell *matHeaderCellDef> Nome </th>
+    <td mat-cell *matCellDef="let jogo"> {{ jogo.nome }} </td>
+  </ng-container>
+
+  <!-- Genero Column -->
+  <ng-container matColumnDef="genero">
+    <th mat-header-cell *matHeaderCellDef> Gênero </th>
+    <td mat-cell *matCellDef="let jogo"> {{ jogo.genero }} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</mat-card-content>
+</mat-card>
