@@ -1,6 +1,8 @@
+import { GamesService } from './../services/games.service';
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../model/Game';
 import { AppMaterialModule } from '../../shared/app-material/app-material.module';
+import { Observable } from 'rxjs/internal/Observable';
 
 
 @Component({
@@ -12,14 +14,15 @@ import { AppMaterialModule } from '../../shared/app-material/app-material.module
 })
 export class GamesComponent implements OnInit{
 
-  games: Game[] = [
-    {_id: 1, nome:"Fortnite", genero: "Multiplayer"},
-    {_id: 2, nome:"Overcooked", genero: "Cozinha"},
-  ];
-  displayedColumns  = ['nome', 'genero'];
-  constructor(){
+ // gamesService: GamesService;
 
+  games: Observable<Game[]>;
+  displayedColumns  = ['nome', 'genero'];
+  constructor(private gamesService: GamesService){
+    this.games = this.gamesService.listAll();
   }
+
+
 
   ngOnInit(): void {
 
